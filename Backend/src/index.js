@@ -21,10 +21,22 @@ app.use(express.json({ limit: '10mb' }));
 app.use(express.urlencoded({ extended: true, limit: '10mb' }));
 app.use(cookieParser());
 
-// ✅ CORS Configuration
+// ✅ Updated CORS Configuration
+const allowedOrigins = [
+  "http://localhost:5173",
+  "https://yap-yap-chat.vercel.app"
+];
+
 app.use(cors({
-  origin: "http://localhost:5173", // frontend origin
-  credentials: true               // allow cookies
+  origin: function (origin, callback) {
+    // allow requests with no origin (like mobile apps, curl, Postman)
+    if (!origin || allowedOrigins.includes(origin)) {
+      callback(null, true);
+    } else {
+      callback(new Error("Not allowed by CORS"));
+    }
+  },
+  credentials: true
 }));
 
 // ✅ Optional Request Logger (for debugging)
@@ -44,6 +56,14 @@ if (process.env.NODE_ENV === "production") {
     res.sendFile(path.join(__dirname, "../Frontend", "dist", "index.html"));
   });
 }
+
+// ✅ CORS Error Handler
+app.use((err, req, res, next) => {
+  if (err.message === "Not allowed by CORS") {
+    return res.status(403).json({ error: "CORS error: Origin not allowed" });
+  }
+  next(err);
+});
 
 // ✅ Start Server
 const PORT = process.env.PORT || 5001;
