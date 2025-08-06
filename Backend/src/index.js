@@ -21,6 +21,11 @@ const __dirname = path.dirname(__filename);
 const PORT = process.env.PORT || 5001;
 
 // ✅ Middleware
+ app.get("/", (req, res) => {
+  res.send("API is running");
+});
+
+
 app.use(express.json({ limit: "10mb" }));
 app.use(express.urlencoded({ extended: true, limit: "10mb" }));
 app.use(cookieParser());
