@@ -5,7 +5,11 @@ const BASE_URL =
     ? "http://localhost:5001/api"
     : import.meta.env.VITE_API_URL + "/api";
 
+// export const axiosInstance = axios.create({
+//   baseURL: BASE_URL,
+//   withCredentials: true,
+// });
 export const axiosInstance = axios.create({
-  baseURL: BASE_URL,
+  baseURL: "https://your-backend-domain.com/api",
   withCredentials: true,
 });
