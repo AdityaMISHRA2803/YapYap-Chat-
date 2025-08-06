@@ -10,6 +10,6 @@ const BASE_URL =
 //   withCredentials: true,
 // });
 export const axiosInstance = axios.create({
-  baseURL: "https://your-backend-domain.com/api",
+  baseURL: "https://yapyap-chat-wjuo.onrender.com/api",
   withCredentials: true,
 });
