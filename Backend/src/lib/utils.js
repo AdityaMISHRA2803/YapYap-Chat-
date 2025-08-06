@@ -28,12 +28,21 @@ export const generateToken = (userId, res) => {
     expiresIn: "7d", // Token valid for 7 days
   });
 
-  res.cookie("jwt", token, {
-    maxAge: 7 * 24 * 60 * 60 * 1000, // 7 days in milliseconds
-    httpOnly: true, // Prevents access from JavaScript (mitigates XSS)
-    sameSite: "Strict", // CSRF protection
-    secure: process.env.NODE_ENV === "production", // Only use HTTPS in production
-  });
+  // res.cookie("jwt", token, {
+  //   maxAge: 7 * 24 * 60 * 60 * 1000, // 7 days in milliseconds
+  //   httpOnly: true, // Prevents access from JavaScript (mitigates XSS)
+  //   sameSite: "Strict", // CSRF protection
+  //   secure: process.env.NODE_ENV === "production", // Only use HTTPS in production
+  // });
+
+
+res.cookie("jwt", token, {
+  maxAge: 7 * 24 * 60 * 60 * 1000,
+  httpOnly: true,
+  sameSite: process.env.NODE_ENV === "production" ? "None" : "Lax",
+  secure: process.env.NODE_ENV === "production"
+});
+
 
   return token;
 };
