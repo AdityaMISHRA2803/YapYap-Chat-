@@ -9,7 +9,7 @@ const io = new Server(server, {
    cors: {
     origin: [
       "http://localhost:5173",
-      "https://yapyap-chat-3wz6.onrender.com/"  // <-- add this
+      "https://yapyap-chat-3wz6.onrender.com"  // <-- add this
     ],
     methods: ["GET", "POST"],
     credentials: true,
