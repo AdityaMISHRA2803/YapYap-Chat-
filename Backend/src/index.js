@@ -30,7 +30,7 @@ app.use(
   cors({
     origin: [
       "http://localhost:5173",            // Dev frontend
-    "https://yap-yap-chat.vercel.app",  // Prod frontend
+    "https://yapyap-chat-1.onrender.com",  // Prod frontend
     "https://yapyap-chat-3wz6.onrender.com" // Backend origin for socket
     ],
     credentials: true,
