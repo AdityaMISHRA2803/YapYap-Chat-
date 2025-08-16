@@ -9,7 +9,7 @@ const io = new Server(server, {
    cors: {
     origin: [
      "http://localhost:5173",
-      "https://yap-yap-chat.vercel.app",
+      "https://yapyap-chat-1.onrender.com",
       "https://yapyap-chat-3wz6.onrender.com"
     ],
     methods: ["GET", "POST"],
